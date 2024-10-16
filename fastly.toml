@@ -1,0 +1,21 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = ["rlabonte@fastly.com"]
+cloned_from = "https://github.com/fastly/compute-starter-kit-rust-empty"
+description = "Paramount Demuxed demo of late binding ad segments"
+language = "rust"
+manifest_version = 3
+name = "paramount_demuxed"
+service_id = ""
+
+[scripts]
+  build = "cargo build --bin fastly-compute-project --release --target wasm32-wasi --color always"
+
+[local_server]                                                                                  
+    [local_server.kv_stores]                                                                    
+        [[local_server.kv_stores.uuids]]
+          key = "foo"
+          data = "bar"
+    [local_server.backends.BACKEND]
+      url = "http://127.0.0.1:8000/"
